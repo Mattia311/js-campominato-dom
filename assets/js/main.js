@@ -30,6 +30,7 @@ const testo = document.getElementById('testo')
 const containerEle = document.querySelector('.container')
 const containerEle_1 = document.querySelector('.container1')
 const containerEle_2 = document.querySelector('.container2')
+const bombs = []
 
 
 if(askDifficulty == 1) {
@@ -46,33 +47,37 @@ if(askDifficulty == 1) {
         
         testo.innerHTML = ('Questo è il livello facile');
 
-        const bombs = []
         
         elemento.addEventListener('click', function() {
-             if(numRandom == i) {
+
+            const cellNumber = parseInt(this.innerText)
+            console.log(cellNumber);
+            is_a_bomb(cellNumber, bombs)
+
+
+            if(is_a_bomb(cellNumber, bombs)) {
 
                 this.style.background = 'red'
+                alert('BOOM! La bomba è scoppiata, hai perso!')
+                
             } else {
                 this.style.background = 'blue'
             }
         })
 
-        elemento.addEventListener('click', function () {
-            const cellNumber = parseInt(this.innerText)
-            console.log(cellNumber);
-            is_a_bomb(cellNumber, bombs)
-        })
-          
+        
     }
-    
-    for (let i = 0; i < 16; i++) {
-    
+
+    while (bombs.length < 15){
+        
         const min = 1
         const max = 100
-        
-        const numRandom = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
-        
+
+
+        const numRandom  = Math.floor(Math.random() * 100) + 1;
+        if(bombs.indexOf(numRandom) === -1) bombs.push(numRandom);
         console.log(numRandom);
+        
     }
     
     
@@ -93,32 +98,33 @@ if(askDifficulty == 1) {
 
         elemento.innerHTML = i;
 
-        const bombs = []
+        
         
         elemento.addEventListener('click', function() {
-            if([i].includes(bombs)) {
+
+            const cellNumber = parseInt(this.innerText)
+            console.log(cellNumber);
+            
+            is_a_bomb(cellNumber, bombs)
+            
+            if(is_a_bomb(cellNumber, bombs)) {
 
                 this.style.background = 'red'
+                alert('BOOM! La bomba è scoppiata, hai perso!')
             } else {
                 this.style.background = 'blue'
             }
         })
-
-        elemento.addEventListener('click', function () {
-            // prendere il contenuto della cell
-            const cellNumber = parseInt(this.innerText)
-            console.log(cellNumber);
-            // verifica se la cella é una bomba
-            is_a_bomb(cellNumber, bombs)
-        })
     }
-    for (let i = 0; i < 16; i++) {
-    
+    while (bombs.length < 15){
+        
         const min = 1
         const max = 81
-        
-        const numRandom = Math.floor(Math.random() * (81 - 1 + 1)) + 1;
-            console.log(numRandom);
+
+
+        const numRandom  = Math.floor(Math.random() * 81) + 1;
+        if(bombs.indexOf(numRandom) === -1) bombs.push(numRandom);
+        console.log(numRandom);
         
     }
 
@@ -138,45 +144,45 @@ if(askDifficulty == 1) {
 
         elemento.innerHTML = i;
 
-        const bombs = []
+        
         
         elemento.addEventListener('click', function() {
-            if([i].includes(bombs)) {
+            const cellNumber = parseInt(this.innerText)
+            console.log(cellNumber);
+            
+            is_a_bomb(cellNumber, bombs)
+
+
+            if(is_a_bomb(cellNumber, bombs)) {
 
                 this.style.background = 'red'
+                alert('BOOM! La bomba è scoppiata, hai perso!')
             } else {
                 this.style.background = 'blue'
             }
         })
-
-        elemento.addEventListener('click', function () {
-            // prendere il contenuto della cell
-            const cellNumber = parseInt(this.innerText)
-            console.log(cellNumber);
-            // verifica se la cella é una bomba
-            is_a_bomb(cellNumber, bombs)
-        })
     }
-    for (let i = 0; i < 16; i++) {
-    
+    while (bombs.length < 15){
+        
         const min = 1
         const max = 49
-        
-        const numRandom = Math.floor(Math.random() * (49 - 1 + 1)) + 1;
-            console.log(numRandom);
+
+
+        const numRandom  = Math.floor(Math.random() * 49) + 1;
+        if(bombs.indexOf(numRandom) === -1) bombs.push(numRandom);
+        console.log(numRandom);
         
     }
 }
 
 function is_a_bomb(grid_cell, bombs) {
-    if (bombs.includes(grid_cell)) {
+    /*if (bombs.includes(grid_cell)) {
       console.log('è una bomba! Game over');
     } else {
       console.log('continua a giocare');
-    }
+    }*/
+    return bombs.includes(grid_cell)
   }
-
-
   
 
 
